@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Question Paper Generator</title>
+    <meta name="description" content="Generate CBSE question papers for classes 1-12 with answer sheets">
+    <meta name="theme-color" content="#3498db">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CBSE Papers">
+    
+    <!-- Icons for mobile -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CBSE Question Paper Generator</h1>
+            <p>Generate customized question papers for Classes 1-12 with answer sheets</p>
+        </header>
+
+        <main>
+            <div class="control-panel">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="classSelect">Select Class:</label>
+                        <select id="classSelect" onchange="updateSubjects()">
+                            <option value="">-- Select Class --</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Select Subject:</label>
+                        <select id="subject" onchange="updateChapters()" disabled>
+                            <option value="">-- Select Subject --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="difficulty">Difficulty Level:</label>
+                        <select id="difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" id="chapterSection" style="display: none;">
+                    <label>Select Chapters:</label>
+                    <div class="chapter-controls">
+                        <button type="button" onclick="selectAllChapters()" class="select-btn">Select All</button>
+                        <button type="button" onclick="deselectAllChapters()" class="select-btn">Deselect All</button>
+                    </div>
+                    <div id="chapterList"></div>
+                </div>
+
+                <div class="question-config-section">
+                    <h3>Question Configuration</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>MCQ Questions:</label>
+                            <div class="marks-config">
+                                <input type="number" id="mcqCount" value="20" min="0" max="50" onchange="calculateTotalMarks()">
+                                <span>×</span>
+                                <input type="number" id="mcqMarks" value="1" min="1" max="5" onchange="calculateTotalMarks()">
+                                <span>marks each</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Theory Questions:</label>
+                            <div class="theory-config">
+                                <div class="marks-config">
+                                    <label>Short Answer:</label>
+                                    <input type="number" id="shortCount" value="10" min="0" max="20" onchange="calculateTotalMarks()">
+                                    <span>×</span>
+                                    <input type="number" id="shortMarks" value="2" min="1" max="5" onchange="calculateTotalMarks()">
+                                    <span>marks</span>
+                                </div>
+                                <div class="marks-config">
+                                    <label>Long Answer:</label>
+                                    <input type="number" id="longCount" value="5" min="0" max="10" onchange="calculateTotalMarks()">
+                                    <span>×</span>
+                                    <input type="number" id="longMarks" value="5" min="3" max="10" onchange="calculateTotalMarks()">
+                                    <span>marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Question Type Mix:</label>
+                            <div class="percentage-config">
+                                <div class="percentage-input">
+                                    <label>Numerical %:</label>
+                                    <input type="number" id="numericalRatio" min="0" max="100" value="50" onchange="updateRatioDisplay('numerical')">
+                                </div>
+                                <div class="percentage-input">
+                                    <label>Theoretical %:</label>
+                                    <input type="number" id="theoreticalRatio" value="50" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Question Source:</label>
+                            <div class="percentage-config">
+                                <div class="percentage-input">
+                                    <label>CBSE Bank %:</label>
+                                    <input type="number" id="cbseRatio" min="0" max="100" value="50" onchange="updateRatioDisplay('ai')">
+                                </div>
+                                <div class="percentage-input">
+                                    <label>AI Generated %:</label>
+                                    <input type="number" id="aiRatio" value="50" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="total-marks-display">
+                        <h3>Total Marks: <span id="calculatedTotalMarks">65</span></h3>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="generate-btn" onclick="generateQuestionPaper()">Generate Question Paper</button>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="generateAnswerSheet" checked>
+                        Generate Answer Sheet
+                    </label>
+                </div>
+            </div>
+
+            <div id="questionPaper" class="question-paper" style="display: none;">
+                <div class="paper-header">
+                    <h2>CBSE <span id="paperClass"></span> - <span id="paperSubject"></span></h2>
+                    <div class="paper-info">
+                        <p>Time: 3 Hours</p>
+                        <p>Maximum Marks: <span id="displayTotalMarks">100</span></p>
+                    </div>
+                </div>
+                <div id="paperContent"></div>
+                <div class="print-buttons">
+                    <button class="print-btn" onclick="printQuestionPaper()">Print Question Paper</button>
+                    <button class="print-btn answer-btn" onclick="showAnswerSheet()" id="answerSheetBtn" style="display: none;">View Answer Sheet</button>
+                </div>
+            </div>
+
+            <div id="answerSheet" class="answer-sheet" style="display: none;">
+                <div class="paper-header">
+                    <h2>Answer Sheet - CBSE <span id="answerClass"></span> - <span id="answerSubject"></span></h2>
+                    <div class="paper-info">
+                        <p>Maximum Marks: <span id="answerTotalMarks">100</span></p>
+                    </div>
+                </div>
+                <div id="answerContent"></div>
+                <div class="print-buttons">
+                    <button class="print-btn" onclick="printAnswerSheet()">Print Answer Sheet</button>
+                    <button class="print-btn" onclick="showQuestionPaper()">Back to Question Paper</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="class-subjects.js"></script>
+    <script src="questions-bank.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('SW registered:', registration))
+                    .catch(error => console.log('SW registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>
