@@ -641,13 +641,259 @@ function generateAIMCQ(topic, subject, isNumerical) {
         templates = isNumerical ? chemistryNumericalMCQ : chemistryTheoreticalMCQ;
     } else if (subject === 'Mathematics') {
         templates = mathsNumericalMCQ;
+    } else if (subject === 'Biology') {
+        const biologyMCQ = [
+            {
+                template: `Which is the powerhouse of the cell?`,
+                options: ["Mitochondria", "Nucleus", "Ribosome", "Golgi body"],
+                answer: "Mitochondria"
+            },
+            {
+                template: `The process of photosynthesis occurs in:`,
+                options: ["Chloroplast", "Mitochondria", "Nucleus", "Cytoplasm"],
+                answer: "Chloroplast"
+            },
+            {
+                template: `Which blood group is universal donor?`,
+                options: ["O-", "AB+", "A+", "B-"],
+                answer: "O-"
+            },
+            {
+                template: `The functional unit of kidney is:`,
+                options: ["Nephron", "Neuron", "Alveoli", "Hepatocyte"],
+                answer: "Nephron"
+            },
+            {
+                template: `Which vitamin is known as ascorbic acid?`,
+                options: ["Vitamin C", "Vitamin A", "Vitamin D", "Vitamin B"],
+                answer: "Vitamin C"
+            },
+            {
+                template: `The largest organ in human body is:`,
+                options: ["Skin", "Liver", "Heart", "Brain"],
+                answer: "Skin"
+            },
+            {
+                template: `DNA stands for:`,
+                options: ["Deoxyribonucleic acid", "Ribonucleic acid", "Deoxynucleic acid", "Ribodeoxynucleic acid"],
+                answer: "Deoxyribonucleic acid"
+            },
+            {
+                template: `Which of these is not a blood cell?`,
+                options: ["Neuron", "RBC", "WBC", "Platelet"],
+                answer: "Neuron"
+            }
+        ];
+        templates = biologyMCQ;
+    } else if (subject === 'English' || subject === 'English Language & Literature') {
+        const englishMCQ = [
+            {
+                template: `Which of the following is a noun?`,
+                options: ["Book", "Running", "Beautiful", "Quickly"],
+                answer: "Book"
+            },
+            {
+                template: `Choose the correct form of the verb: She ___ to school every day.`,
+                options: ["goes", "go", "going", "gone"],
+                answer: "goes"
+            },
+            {
+                template: `The synonym of 'happy' is:`,
+                options: ["Joyful", "Sad", "Angry", "Tired"],
+                answer: "Joyful"
+            },
+            {
+                template: `Which punctuation mark is used at the end of a question?`,
+                options: ["Question mark (?)", "Full stop (.)", "Comma (,)", "Exclamation mark (!)"],
+                answer: "Question mark (?)"
+            },
+            {
+                template: `The opposite of 'ancient' is:`,
+                options: ["Modern", "Old", "Historic", "Past"],
+                answer: "Modern"
+            },
+            {
+                template: `Choose the correct article: ___ apple a day keeps the doctor away.`,
+                options: ["An", "A", "The", "No article"],
+                answer: "An"
+            },
+            {
+                template: `Which is an example of a collective noun?`,
+                options: ["Team", "Player", "Ball", "Game"],
+                answer: "Team"
+            },
+            {
+                template: `The past tense of 'swim' is:`,
+                options: ["Swam", "Swimmed", "Swum", "Swimming"],
+                answer: "Swam"
+            }
+        ];
+        templates = englishMCQ;
+    } else if (subject === 'Social Science' || subject === 'Social Studies' || subject === 'History' || subject === 'Geography' || subject === 'Civics') {
+        const socialMCQ = [
+            {
+                template: `The capital of India is:`,
+                options: ["New Delhi", "Mumbai", "Kolkata", "Chennai"],
+                answer: "New Delhi"
+            },
+            {
+                template: `Who is known as the Father of the Nation in India?`,
+                options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Sardar Patel", "Subhas Chandra Bose"],
+                answer: "Mahatma Gandhi"
+            },
+            {
+                template: `The longest river in India is:`,
+                options: ["Ganga", "Brahmaputra", "Godavari", "Narmada"],
+                answer: "Ganga"
+            },
+            {
+                template: `India got independence in the year:`,
+                options: ["1947", "1950", "1945", "1948"],
+                answer: "1947"
+            },
+            {
+                template: `The national bird of India is:`,
+                options: ["Peacock", "Parrot", "Eagle", "Sparrow"],
+                answer: "Peacock"
+            },
+            {
+                template: `Which is the largest state in India by area?`,
+                options: ["Rajasthan", "Maharashtra", "Uttar Pradesh", "Madhya Pradesh"],
+                answer: "Rajasthan"
+            },
+            {
+                template: `The Constitution of India was adopted on:`,
+                options: ["26 January 1950", "15 August 1947", "26 November 1949", "2 October 1950"],
+                answer: "26 November 1949"
+            },
+            {
+                template: `The Himalayas are located in which direction of India?`,
+                options: ["North", "South", "East", "West"],
+                answer: "North"
+            }
+        ];
+        templates = socialMCQ;
+    } else if (subject === 'Hindi') {
+        const hindiMCQ = [
+            {
+                template: `'पुस्तक' का बहुवचन क्या है?`,
+                options: ["पुस्तकें", "पुस्तकों", "पुस्तक", "पुस्तकीय"],
+                answer: "पुस्तकें"
+            },
+            {
+                template: `निम्नलिखित में से संज्ञा शब्द कौन सा है?`,
+                options: ["लड़का", "दौड़ना", "सुंदर", "धीरे"],
+                answer: "लड़का"
+            },
+            {
+                template: `'राम ने रावण को मारा' - इस वाक्य में कर्ता कौन है?`,
+                options: ["राम", "रावण", "मारा", "ने"],
+                answer: "राम"
+            },
+            {
+                template: `हिंदी वर्णमाला में कुल कितने वर्ण हैं?`,
+                options: ["52", "48", "44", "56"],
+                answer: "52"
+            },
+            {
+                template: `'सूर्य' का पर्यायवाची शब्द है:`,
+                options: ["रवि", "चंद्र", "तारा", "ग्रह"],
+                answer: "रवि"
+            }
+        ];
+        templates = hindiMCQ;
+    } else if (subject === 'Computer Science' || subject === 'Computer Applications') {
+        const computerMCQ = [
+            {
+                template: `Which of the following is an input device?`,
+                options: ["Keyboard", "Monitor", "Printer", "Speaker"],
+                answer: "Keyboard"
+            },
+            {
+                template: `The brain of computer is:`,
+                options: ["CPU", "Monitor", "Keyboard", "Mouse"],
+                answer: "CPU"
+            },
+            {
+                template: `1 KB equals:`,
+                options: ["1024 bytes", "1000 bytes", "1024 bits", "1000 bits"],
+                answer: "1024 bytes"
+            },
+            {
+                template: `Which is a primary memory?`,
+                options: ["RAM", "Hard Disk", "CD-ROM", "Pen Drive"],
+                answer: "RAM"
+            },
+            {
+                template: `The full form of WWW is:`,
+                options: ["World Wide Web", "World Wide Wire", "Web Wide World", "Wide World Web"],
+                answer: "World Wide Web"
+            }
+        ];
+        templates = computerMCQ;
+    } else if (subject === 'EVS' || subject === 'Environmental Studies') {
+        const evsMCQ = [
+            {
+                template: `Which of the following is a renewable resource?`,
+                options: ["Solar energy", "Coal", "Petroleum", "Natural gas"],
+                answer: "Solar energy"
+            },
+            {
+                template: `The main gas responsible for global warming is:`,
+                options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+                answer: "Carbon dioxide"
+            },
+            {
+                template: `World Environment Day is celebrated on:`,
+                options: ["June 5", "April 22", "March 22", "September 16"],
+                answer: "June 5"
+            },
+            {
+                template: `Which of these helps in water conservation?`,
+                options: ["Rainwater harvesting", "Deforestation", "Using more plastic", "Burning waste"],
+                answer: "Rainwater harvesting"
+            },
+            {
+                template: `The 3 R's of waste management are:`,
+                options: ["Reduce, Reuse, Recycle", "Read, Write, Remember", "Run, Rest, Repeat", "Red, Round, Rectangle"],
+                answer: "Reduce, Reuse, Recycle"
+            }
+        ];
+        templates = evsMCQ;
     } else {
-        // Default templates for other subjects
-        templates = [{
-            template: `In context of ${topic}, which is correct?`,
-            options: ["Correct answer", "Incorrect option 1", "Incorrect option 2", "Incorrect option 3"],
-            answer: "Correct answer"
-        }];
+        // Generic templates for any other subject with better options
+        templates = [
+            {
+                template: `Which of the following best describes ${topic}?`,
+                options: [
+                    `A fundamental concept in ${subject}`,
+                    `An advanced topic in ${subject}`,
+                    `A basic principle of ${subject}`,
+                    `An unrelated concept`
+                ],
+                answer: `A fundamental concept in ${subject}`
+            },
+            {
+                template: `The main purpose of studying ${topic} is to:`,
+                options: [
+                    "Understand core concepts",
+                    "Memorize facts only",
+                    "Pass examinations",
+                    "None of the above"
+                ],
+                answer: "Understand core concepts"
+            },
+            {
+                template: `In ${subject}, ${topic} is important because:`,
+                options: [
+                    "It forms the foundation of the subject",
+                    "It is rarely used",
+                    "It is only theoretical",
+                    "It has no practical application"
+                ],
+                answer: "It forms the foundation of the subject"
+            }
+        ];
     }
     
     // Filter out already used templates and concepts
