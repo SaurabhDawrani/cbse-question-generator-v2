@@ -335,6 +335,8 @@ function generateAIQuestion(type, chapter, isNumerical) {
 }
 
 function generateAIMCQ(topic, subject, isNumerical) {
+    // Debug log to see what subject is being passed
+    console.log('Generating MCQ for subject:', subject, 'topic:', topic);
     const physicsNumericalMCQ = [
         // Momentum questions
         {
@@ -685,7 +687,7 @@ function generateAIMCQ(topic, subject, isNumerical) {
             }
         ];
         templates = biologyMCQ;
-    } else if (subject === 'English' || subject === 'English Language & Literature') {
+    } else if (subject === 'English' || subject === 'English Language & Literature' || subject === 'English Core' || subject === 'English Elective' || subject.includes('English')) {
         const englishMCQ = [
             {
                 template: `Which of the following is a noun?`,
@@ -729,7 +731,7 @@ function generateAIMCQ(topic, subject, isNumerical) {
             }
         ];
         templates = englishMCQ;
-    } else if (subject === 'Social Science' || subject === 'Social Studies' || subject === 'History' || subject === 'Geography' || subject === 'Civics') {
+    } else if (subject === 'Social Science' || subject === 'Social Studies' || subject === 'History' || subject === 'Geography' || subject === 'Civics' || subject === 'Political Science' || subject === 'Economics' || subject === 'Sociology' || subject.includes('Social') || subject.includes('History') || subject.includes('Geography')) {
         const socialMCQ = [
             {
                 template: `The capital of India is:`,
@@ -802,7 +804,7 @@ function generateAIMCQ(topic, subject, isNumerical) {
             }
         ];
         templates = hindiMCQ;
-    } else if (subject === 'Computer Science' || subject === 'Computer Applications') {
+    } else if (subject === 'Computer Science' || subject === 'Computer Applications' || subject === 'Informatics Practices' || subject.includes('Computer')) {
         const computerMCQ = [
             {
                 template: `Which of the following is an input device?`,
@@ -831,7 +833,7 @@ function generateAIMCQ(topic, subject, isNumerical) {
             }
         ];
         templates = computerMCQ;
-    } else if (subject === 'EVS' || subject === 'Environmental Studies') {
+    } else if (subject === 'EVS' || subject === 'Environmental Studies' || subject === 'Environmental Science') {
         const evsMCQ = [
             {
                 template: `Which of the following is a renewable resource?`,
@@ -860,6 +862,73 @@ function generateAIMCQ(topic, subject, isNumerical) {
             }
         ];
         templates = evsMCQ;
+    } else if (subject === 'Communication Skills' || subject.includes('Communication')) {
+        const communicationMCQ = [
+            {
+                template: `Which of the following is a barrier to effective communication?`,
+                options: ["Noise", "Clear speech", "Active listening", "Eye contact"],
+                answer: "Noise"
+            },
+            {
+                template: `Non-verbal communication includes:`,
+                options: ["Body language", "Written words", "Spoken words", "Email"],
+                answer: "Body language"
+            },
+            {
+                template: `Active listening involves:`,
+                options: ["Paying full attention", "Interrupting frequently", "Thinking of replies", "Looking at phone"],
+                answer: "Paying full attention"
+            },
+            {
+                template: `The most important element in communication is:`,
+                options: ["Understanding", "Speaking loudly", "Using big words", "Writing neatly"],
+                answer: "Understanding"
+            },
+            {
+                template: `Feedback in communication helps to:`,
+                options: ["Ensure message is understood", "Create confusion", "Waste time", "Show dominance"],
+                answer: "Ensure message is understood"
+            }
+        ];
+        templates = communicationMCQ;
+    } else if (subject.includes('Sanskrit')) {
+        const sanskritMCQ = [
+            {
+                template: `'गच्छति' का अर्थ है:`,
+                options: ["जाता है", "आता है", "खाता है", "सोता है"],
+                answer: "जाता है"
+            },
+            {
+                template: `'बालकः' का बहुवचन है:`,
+                options: ["बालकाः", "बालकम्", "बालकस्य", "बालके"],
+                answer: "बालकाः"
+            },
+            {
+                template: `संस्कृत में 'पुस्तक' को कहते हैं:`,
+                options: ["पुस्तकम्", "पुस्तकः", "पुस्तका", "पुस्तके"],
+                answer: "पुस्तकम्"
+            }
+        ];
+        templates = sanskritMCQ;
+    } else if (subject.includes('Physical Education') || subject === 'PE') {
+        const peMCQ = [
+            {
+                template: `How many players are in a cricket team?`,
+                options: ["11", "10", "12", "9"],
+                answer: "11"
+            },
+            {
+                template: `The Olympic Games are held every:`,
+                options: ["4 years", "2 years", "3 years", "5 years"],
+                answer: "4 years"
+            },
+            {
+                template: `Which vitamin is produced when skin is exposed to sunlight?`,
+                options: ["Vitamin D", "Vitamin C", "Vitamin A", "Vitamin B"],
+                answer: "Vitamin D"
+            }
+        ];
+        templates = peMCQ;
     } else {
         // Generic templates for any other subject with better options
         templates = [
